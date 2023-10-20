@@ -1,1 +1,6 @@
-<h1>{{applicationName}}</h1>
+<h1 *ngIf="isShowHeading">{{applicationName}}</h1>
+<button data-testid="hide-button" class="hide-button" (click)="hideHeading()">Hide Heading</button>
+<button data-testid="change-button" class="change-button" (click)="changeHeading()">Change Heading</button>
+
+
+<app-listing [items]="items"></app-listing>
