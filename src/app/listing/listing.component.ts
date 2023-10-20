@@ -7,4 +7,8 @@ import { Component, Input } from '@angular/core';
 })
 export class ListingComponent {
   @Input() items: string[] = [];
+
+  selectItem(item: any) {
+    console.log(item);
+  }
 }
