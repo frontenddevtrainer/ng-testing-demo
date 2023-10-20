@@ -3,10 +3,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { ListingComponent } from './listing/listing.component';
 import { By } from '@angular/platform-browser';
+import { PeopleService } from './people.service';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let componentInstance: AppComponent;
+  let peopleService: PeopleService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -16,7 +18,14 @@ describe('AppComponent', () => {
 
     fixture = TestBed.createComponent(AppComponent);
     componentInstance = fixture.componentInstance;
+    peopleService = TestBed.inject(PeopleService);
+    spyOn(peopleService, "getPeopleData");
+    fixture.detectChanges();
   });
+
+  it("should call service method getPeopleData", ()=>{
+      expect(peopleService.getPeopleData).toHaveBeenCalled();
+  })
 
   it('should create the app', () => {
     expect(componentInstance).toBeTruthy();
@@ -87,13 +96,14 @@ describe('AppComponent', () => {
   });
 
   it('should update h2 if listing item is clicked"', () => {
-    spyOn(componentInstance, "onSelect");
+    spyOn(componentInstance, 'onSelect');
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     /// const childListing = fixture.debugElement.children[4].componentInstance;
-    const childListing: ListingComponent = fixture.debugElement.queryAll(By.directive(ListingComponent))[0].componentInstance
-    childListing.select.emit(1)
+    const childListing: ListingComponent = fixture.debugElement.queryAll(
+      By.directive(ListingComponent)
+    )[0].componentInstance;
+    childListing.select.emit(1);
     expect(componentInstance.onSelect).toHaveBeenCalledWith(1);
   });
-
 });

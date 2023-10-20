@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PeopleService } from './people.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,10 @@ export class AppComponent implements OnInit {
   applicationName: string = 'Hello World!!!';
   isShowHeading: boolean = true;
   selectedItem: any = ""
+
+  constructor(private _people: PeopleService){
+
+  }
 
   items: string[] = [];
 
@@ -32,5 +37,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = ['1', '2', '3', '4'];
+    this._people.getPeopleData();
   }
 }
