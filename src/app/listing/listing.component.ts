@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-listing',
@@ -7,8 +7,10 @@ import { Component, Input } from '@angular/core';
 })
 export class ListingComponent {
   @Input() items: string[] = [];
+  @Output() select: EventEmitter<any> = new EventEmitter()
 
   selectItem(item: any) {
     console.log(item);
+    this.select.emit(item)
   }
 }

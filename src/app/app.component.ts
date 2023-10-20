@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   applicationName: string = 'Hello World!!!';
   isShowHeading: boolean = true;
+  selectedItem: any = ""
 
   items: string[] = [];
 
@@ -22,6 +23,11 @@ export class AppComponent implements OnInit {
 
   changeHeading() {
     this.applicationName = 'Hello World from Testing.';
+  }
+
+  onSelect(event: any){
+    console.log(event);
+    this.selectedItem = event;
   }
 
   ngOnInit(): void {

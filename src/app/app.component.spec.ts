@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { ListingComponent } from './listing/listing.component';
+import { By } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -84,4 +85,15 @@ describe('AppComponent', () => {
     const items = listing?.querySelectorAll('li');
     expect(items?.length).toBe(4);
   });
+
+  it('should update h2 if listing item is clicked"', () => {
+    spyOn(componentInstance, "onSelect");
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    /// const childListing = fixture.debugElement.children[4].componentInstance;
+    const childListing: ListingComponent = fixture.debugElement.queryAll(By.directive(ListingComponent))[0].componentInstance
+    childListing.select.emit(1)
+    expect(componentInstance.onSelect).toHaveBeenCalledWith(1);
+  });
+
 });
