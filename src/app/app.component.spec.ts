@@ -5,6 +5,9 @@ import { ListingComponent } from './listing/listing.component';
 import { By } from '@angular/platform-browser';
 import { PeopleService } from './people.service';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UserListingComponent } from './user-listing/user-listing.component';
+
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let componentInstance: AppComponent;
@@ -12,20 +15,20 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent, ListingComponent],
+      imports: [RouterTestingModule, HttpClientTestingModule],
+      declarations: [AppComponent, ListingComponent, UserListingComponent],
     });
 
     fixture = TestBed.createComponent(AppComponent);
     componentInstance = fixture.componentInstance;
     peopleService = TestBed.inject(PeopleService);
-    spyOn(peopleService, "getPeopleData");
+    spyOn(peopleService, 'getPeopleData');
     fixture.detectChanges();
   });
 
-  it("should call service method getPeopleData", ()=>{
-      expect(peopleService.getPeopleData).toHaveBeenCalled();
-  })
+  it('should call service method getPeopleData', () => {
+    expect(peopleService.getPeopleData).toHaveBeenCalled();
+  });
 
   it('should create the app', () => {
     expect(componentInstance).toBeTruthy();
