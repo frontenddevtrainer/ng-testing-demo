@@ -17,4 +17,8 @@ export class PeopleService {
       'https://jsonplaceholder.typicode.com/users'
     );
   }
+
+  postPersonDataToAPI(user: IUser) {
+    return this._http.post('https://jsonplaceholder.typicode.com/users', user);
+  }
 }

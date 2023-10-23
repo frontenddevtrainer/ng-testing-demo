@@ -35,13 +35,60 @@ describe('PeopleService', () => {
       expect(response.length).toBe(1);
     });
 
-    const req = httpMock.expectOne("https://jsonplaceholder.typicode.com/users");
-    expect(req.request.method).toBe("GET");
+    const req = httpMock.expectOne(
+      'https://jsonplaceholder.typicode.com/users'
+    );
+    expect(req.request.method).toBe('GET');
     req.flush(MOCK_DATA);
-
   });
 
-  afterEach(()=>{
-    httpMock.verify()
-  })
+  it('should post data using http post', () => {
+    const mockUser: Partial<IUser> = { id: 1, name: 'Def' };
+    const mockResponse = { status: 'success' };
+    //1
+    service
+      .postPersonDataToAPI(mockUser as IUser)
+      // 2
+      .subscribe((response) => {
+        expect(response).toEqual(mockResponse);
+      });
+
+    // 1
+    const req = httpMock.expectOne(
+      'https://jsonplaceholder.typicode.com/users'
+    );
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual(mockUser);
+
+    // 2
+    req.flush(mockResponse, { status: 200, statusText: "Not found" });
+  });
+
+  it('should throw error', () => {
+    const mockUser: Partial<IUser> = { id: 1, name: 'Def' };
+    const mockResponse = { status: 'success' };
+    //1
+    service
+      .postPersonDataToAPI(mockUser as IUser)
+      // 2
+      .subscribe({
+        error: (err)=>{
+          expect(err.status).toBe(404)
+        }
+      });
+
+    // 1
+    const req = httpMock.expectOne(
+      'https://jsonplaceholder.typicode.com/users'
+    );
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual(mockUser);
+
+    // 2
+    req.flush(mockResponse, { status: 404, statusText: "Not found" });
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+  });
 });
