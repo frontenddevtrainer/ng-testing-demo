@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { ListingComponent } from './listing/listing.component';
 import { TableComponent } from './table/table.component';
 import { UserListingComponent } from './user-listing/user-listing.component';
+import { CustomCasePipe } from './pipes/custom-case.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ListingComponent,
     TableComponent,
-    UserListingComponent
+    UserListingComponent,
+    CustomCasePipe
   ],
   imports: [
     BrowserModule,
