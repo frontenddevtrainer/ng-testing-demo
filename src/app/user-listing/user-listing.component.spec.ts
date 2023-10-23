@@ -8,15 +8,16 @@ import {
 } from '@angular/common/http/testing';
 import { PeopleService } from '../people.service';
 import { of } from 'rxjs';
+import { UpperCasePipe } from '@angular/common';
 
 const MOCK_DATA_2_USERS: Partial<IUser>[] = [
   {
     id: 1,
-    username: 'abc',
+    username: 'Amit',
   },
   {
     id: 2,
-    username: 'def',
+    username: 'Praveen',
   },
 ];
 
@@ -62,6 +63,8 @@ describe('UserListingComponent', () => {
       'li'
     ) as HTMLCollection;
     expect(listitem.length).toBe(2);
-    expect(listitem[0].textContent).toContain('abc');
+    expect(listitem[0].textContent).toContain(
+      new UpperCasePipe().transform(MOCK_DATA_2_USERS[0].username)
+    );
   });
 });
