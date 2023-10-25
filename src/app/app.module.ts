@@ -10,6 +10,8 @@ import { TableComponent } from './table/table.component';
 import { UserListingComponent } from './user-listing/user-listing.component';
 import { CustomCasePipe } from './pipes/custom-case.pipe';
 import { TimerComponent } from './components/timer/timer.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { ProductspageComponent } from './components/productspage/productspage.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TimerComponent } from './components/timer/timer.component';
     TableComponent,
     UserListingComponent,
     CustomCasePipe,
-    TimerComponent
+    TimerComponent,
+    HomepageComponent,
+    ProductspageComponent
   ],
   imports: [
     BrowserModule,
