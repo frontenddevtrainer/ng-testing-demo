@@ -7,6 +7,7 @@ import { PeopleService } from './people.service';
 
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { UserListingComponent } from './user-listing/user-listing.component';
+import { TimerComponent } from './components/timer/timer.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
@@ -16,7 +17,7 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, HttpClientTestingModule],
-      declarations: [AppComponent, ListingComponent, UserListingComponent],
+      declarations: [AppComponent, ListingComponent, UserListingComponent, TimerComponent],
     });
 
     fixture = TestBed.createComponent(AppComponent);

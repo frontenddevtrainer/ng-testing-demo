@@ -11,6 +11,7 @@ import {
 } from '@angular/common/http/testing';
 
 import { UserService } from './user.service';
+import { IUser } from '../interfaces/user';
 
 describe('UserService', () => {
   let service: UserService;
@@ -58,7 +59,7 @@ describe('UserService', () => {
 
   it('should verify data from api', fakeAsync(() => {
     let data: any;
-    const mockdata = { data: 'abc' };
+    const mockdata: Partial<IUser> = { name: 'abc' };
 
     service.getUserData().subscribe((response) => {
       data = response;
@@ -69,6 +70,6 @@ describe('UserService', () => {
     tick();
 
     expect(data).toEqual(mockdata);
-    expect(service.user).toEqual(mockdata);
+    expect(service.user).toEqual(mockdata as IUser);
   }));
 });
