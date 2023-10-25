@@ -1,4 +1,8 @@
-class Circle<T> {
+interface IHasLength {
+    length: number
+}
+
+class Circle<T extends IHasLength> {
   private radius!: T;
 
   constructor(radius: T){
@@ -14,10 +18,10 @@ class Circle<T> {
   }
 }
 
-const aCircle = new Circle<number>(9);
+// const aCircle = new Circle<number>(9)
 const bCircle = new Circle<string>("9")
 
-aCircle.get()
+// aCircle.get()
 
 bCircle.get()
 
