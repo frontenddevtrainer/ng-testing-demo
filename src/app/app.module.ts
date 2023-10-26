@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HttpClientModule } from "@angular/common/http"
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProductspageComponent } from './components/productspage/productspage.component';
 import { ProductdetailspageComponent } from './components/productdetailspage/productdetailspage.component';
 import { HighlightDirective } from './directives/highlight.directive';
+import { IsAdminGuardService, adminGuardFactory } from './guard/is-admin.guard';
 
 @NgModule({
   declarations: [
@@ -26,14 +27,16 @@ import { HighlightDirective } from './directives/highlight.directive';
     HomepageComponent,
     ProductspageComponent,
     ProductdetailspageComponent,
-    HighlightDirective
+    HighlightDirective,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  providers: [
+    {
+      provide: adminGuardFactory,
+      useFactory: adminGuardFactory,
+      deps: [IsAdminGuardService],
+    },
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

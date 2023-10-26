@@ -1,17 +1,43 @@
-import { TestBed } from '@angular/core/testing';
-import { CanActivateFn } from '@angular/router';
+import { TestBed, inject } from '@angular/core/testing';
+import {
+  ActivatedRouteSnapshot,
+  CanActivateFn,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 
-import { isAdminGuard } from './is-admin.guard';
+import { IsAdminGuardService, adminGuardFactory } from './is-admin.guard';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UserService } from '../services/user.service';
 
 describe('isAdminGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => isAdminGuard(...guardParameters));
+  let service: IsAdminGuardService;
+  let userServiceMock: jasmine.SpyObj<UserService>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    userServiceMock = jasmine.createSpyObj('UserService', ['isAdmin']);
+
+    TestBed.configureTestingModule({
+      providers: [
+        IsAdminGuardService,
+        {
+          provide: UserService,
+          useValue: userServiceMock,
+        },
+      ],
+    });
+
+    service = TestBed.inject(IsAdminGuardService);
+  });
+  it('should return true when is isAdmin', () => {
+    userServiceMock.isAdmin = true;
+    const result = service.isAdminGuard();
+    expect(result).toBe(true);
   });
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+  it('should return true when is not isAdmin', () => {
+    userServiceMock.isAdmin = false;
+    const result = service.isAdminGuard();
+    expect(result).toBe(false);
   });
 });

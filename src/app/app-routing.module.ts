@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProductspageComponent } from './components/productspage/productspage.component';
 import { ProductdetailspageComponent } from './components/productdetailspage/productdetailspage.component';
-import { isAdminGuard } from './guard/is-admin.guard';
+import { adminGuardFactory } from './guard/is-admin.guard';
 
 export const routes: Routes = [
   {
@@ -17,7 +17,7 @@ export const routes: Routes = [
   {
     path: 'product-detail/:id',
     component: ProductdetailspageComponent,
-    canActivate: [isAdminGuard]
+    canActivate: [adminGuardFactory]
   },
 ];
 

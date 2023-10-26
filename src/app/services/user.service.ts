@@ -12,6 +12,8 @@ export class UserService {
 
   user!: IUser;
 
+  isAdmin = true;
+
   constructor(private _http: HttpClient) { }
 
   getUserData(){
