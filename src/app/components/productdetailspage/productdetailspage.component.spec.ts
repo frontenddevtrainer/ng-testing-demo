@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 const mockActivatedRoute = {
   snapshot: { params: {} },
   params: of({ id: '123' }),
+  queryParams: of({ name: 'abc' }),
 };
 
 describe('ProductdetailspageComponent', () => {
@@ -32,11 +33,19 @@ describe('ProductdetailspageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should get the route parameter', () => {
+  it('should get the route param parameter', () => {
     const activatedRoute: ActivatedRoute = TestBed.inject(ActivatedRoute);
     spyOn(activatedRoute.params, 'subscribe').and.callThrough();
     component.ngOnInit();
     expect(activatedRoute.params.subscribe).toHaveBeenCalled();
     expect(component.id).toBe('123');
+  });
+
+  it('should get the route query parameter', () => {
+    const activatedRoute: ActivatedRoute = TestBed.inject(ActivatedRoute);
+    spyOn(activatedRoute.queryParams, 'subscribe').and.callThrough();
+    component.ngOnInit();
+    expect(activatedRoute.queryParams.subscribe).toHaveBeenCalled();
+    expect(component.name).toBe('abc');
   });
 });

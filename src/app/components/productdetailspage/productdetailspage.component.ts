@@ -8,10 +8,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductdetailspageComponent implements OnInit {
   id!: string;
+  name!: string;
 
   constructor(private _activateRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this._activateRoute.queryParams.subscribe((query) => {
+      this.name = query['name'];
+    });
+
     this._activateRoute.params.subscribe((params) => {
       this.id = params['id'];
     });
