@@ -12,6 +12,7 @@ import { CustomCasePipe } from './pipes/custom-case.pipe';
 import { TimerComponent } from './components/timer/timer.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProductspageComponent } from './components/productspage/productspage.component';
+import { ProductdetailspageComponent } from './components/productdetailspage/productdetailspage.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProductspageComponent } from './components/productspage/productspage.co
     CustomCasePipe,
     TimerComponent,
     HomepageComponent,
-    ProductspageComponent
+    ProductspageComponent,
+    ProductdetailspageComponent
   ],
   imports: [
     BrowserModule,

@@ -19,12 +19,20 @@ describe('AppComponent', () => {
   let componentInstance: AppComponent;
   let peopleService: PeopleService;
   let router: Router;
-  let location: Location
+  let location: Location;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(routes), HttpClientTestingModule],
-      declarations: [AppComponent, ListingComponent, UserListingComponent, TimerComponent],
+      imports: [
+        RouterTestingModule.withRoutes(routes),
+        HttpClientTestingModule,
+      ],
+      declarations: [
+        AppComponent,
+        ListingComponent,
+        UserListingComponent,
+        TimerComponent,
+      ],
     });
 
     fixture = TestBed.createComponent(AppComponent);
@@ -38,17 +46,19 @@ describe('AppComponent', () => {
     fixture.detectChanges();
   });
 
-  
-
-  it('navigates to / should load the homepage component', async() => {
+  it('navigates to / should load the homepage component', async () => {
     await router.navigate(['']);
     expect(location.path()).toBe('/');
-    expect(fixture.debugElement.query(By.directive(HomepageComponent))).toBeTruthy()
+    expect(
+      fixture.debugElement.query(By.directive(HomepageComponent))
+    ).toBeTruthy();
   });
 
-  it('navigates to /products should load the homepage component', async() => {
+  it('navigates to /products should load the homepage component', async () => {
     await router.navigate(['products']);
     expect(location.path()).toBe('/products');
-    expect(fixture.debugElement.query(By.directive(ProductspageComponent))).toBeTruthy()
+    expect(
+      fixture.debugElement.query(By.directive(ProductspageComponent))
+    ).toBeTruthy();
   });
 });
