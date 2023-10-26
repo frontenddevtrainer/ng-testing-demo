@@ -13,6 +13,7 @@ import { TimerComponent } from './components/timer/timer.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { ProductspageComponent } from './components/productspage/productspage.component';
 import { ProductdetailspageComponent } from './components/productdetailspage/productdetailspage.component';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ProductdetailspageComponent } from './components/productdetailspage/pro
     TimerComponent,
     HomepageComponent,
     ProductspageComponent,
-    ProductdetailspageComponent
+    ProductdetailspageComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
